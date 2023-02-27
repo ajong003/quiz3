@@ -31,6 +31,32 @@ public class BST {
         System.out.println(isBST(root));
          List xd=getNodesAtHeight(root,2);
         System.out.println(xd.toString());
+        ArrayList arr = new ArrayList();
+        arr.add(6);
+        arr.add(7);
+        arr.add(12);
+        arr.add(10);
+        arr.add(15);
+        arr.add(1);
+
+        System.out.println("isminheap: " +isMinHeap(arr) );
+
+    }
+    public static boolean isMinHeap(ArrayList<Integer> minHeap)
+    {
+        // Traverse the max heap from the last parent to the root
+        boolean isMinHeap=true;
+        for(int i = ((minHeap.size()/2)-1);i>=0;i--){
+            //condition violates minheap proprty set boolean flag to false
+            if(i*2+1<minHeap.size() && (minHeap.get(i*2+1)<minHeap.get(i))) {
+
+                isMinHeap=false;
+            }
+            if(i*2+2<minHeap.size() && minHeap.get(i*2+2)< minHeap.get(i)){
+                isMinHeap=false;
+            }
+        }
+        return isMinHeap;
 
     }
     public static List<Node> getNodesAtHeight(Node root, int height)
