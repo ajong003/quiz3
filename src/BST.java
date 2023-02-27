@@ -48,13 +48,12 @@ public class BST {
         boolean isMinHeap=true;
         for(int i = ((minHeap.size()/2)-1);i>=0;i--){
             //condition violates minheap proprty set boolean flag to false
-            if(i*2+1<minHeap.size() && (minHeap.get(i*2+1)<minHeap.get(i))) {
+            if((i*2+1<minHeap.size() && (minHeap.get(i*2+1)<minHeap.get(i)))
+                    ||(i*2+2<minHeap.size() && minHeap.get(i*2+2)< minHeap.get(i))) {
 
                 isMinHeap=false;
             }
-            if(i*2+2<minHeap.size() && minHeap.get(i*2+2)< minHeap.get(i)){
-                isMinHeap=false;
-            }
+
         }
         return isMinHeap;
 
