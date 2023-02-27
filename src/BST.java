@@ -1,9 +1,17 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class Node {
     int val;
     Node left;
     Node right;
     public Node(int x){
         val=x;
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(val);
     }
 }
 public class BST {
@@ -12,11 +20,37 @@ public class BST {
     public static void main(String[] args) {
         Node root = new Node(10);
         root.left= new Node(5);
-        root.left.right = new Node(9);
         root.right = new Node(8);
+        root.left.right = new Node(9);
+        root.left.left = new Node(3);
+        root.left.right.left = new Node(3);
         root.right.left = new Node(13);
+        root.right.right = new Node(3);
+
 
         System.out.println(isBST(root));
+         List xd=getNodesAtHeight(root,2);
+        System.out.println(xd.toString());
+
+    }
+    public static List<Node> getNodesAtHeight(Node root, int height)
+    {
+        List<Node> nodes = new ArrayList<>();
+        getNodesAtHeight(root, 0, height, nodes);
+        return nodes;
+    }
+    private static void getNodesAtHeight(Node node, int currentHeight, int targetHeight, List<Node> nodes)
+    {
+        if(node==null){//empty node do nothing
+            return;
+        }
+        if(currentHeight==targetHeight){//add node to the list if current height of node equals target height
+            nodes.add(node);
+        }
+        else {//increment height by 1 level when calling left and right children
+            getNodesAtHeight(node.left, currentHeight + 1, targetHeight, nodes);
+            getNodesAtHeight(node.right, currentHeight + 1, targetHeight, nodes);
+        }
 
     }
     public static boolean isBST(Node T)
