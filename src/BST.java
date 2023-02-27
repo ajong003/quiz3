@@ -31,7 +31,7 @@ public class BST {
         }//compare left and right children with node value
         //also compare left and right children with min and max value
         else if(T.left != null && (T.left.val > T.val || T.left.val < min)  ||
-                T.right != null && (T.right.val < T.val || T.right.val > max)){ //right child in the left subtree is bigger than the biggest found so far from the right subtree
+                T.right != null && (T.right.val < T.val || T.right.val > max)){
             return false;
 
         }
