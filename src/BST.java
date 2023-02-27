@@ -28,13 +28,15 @@ public class BST {
     {
         if(T==null){//empty node
             return true;
-        }
-        else if(T.left != null && (T.left.val > T.val || T.left.val < min)  || //left child is smaller than the smallest in the left tree then it violates the bst property
+        }//compare left and right children with node value
+        //also compare left and right children with min and max value
+        else if(T.left != null && (T.left.val > T.val || T.left.val < min)  ||
                 T.right != null && (T.right.val < T.val || T.right.val > max)){ //right child in the left subtree is bigger than the biggest found so far from the right subtree
             return false;
 
         }
-        else{
+        else{//when going left set max value to node (no value in the left subtree can be greater than node)
+            //when going right set min value to node
             return isBSTHelper(T.left,min,T.val) && isBSTHelper(T.right, T.val, max );
         }
     }
