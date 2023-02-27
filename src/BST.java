@@ -20,12 +20,12 @@ public class BST {
     public static void main(String[] args) {
         Node root = new Node(10);
         root.left= new Node(5);
-        root.right = new Node(8);
+        root.right = new Node(14);
         root.left.right = new Node(9);
         root.left.left = new Node(3);
-        root.left.right.left = new Node(3);
+        //root.left.right.left = new Node(3);
         root.right.left = new Node(13);
-        root.right.right = new Node(3);
+        
 
 
         System.out.println(isBST(root));
@@ -83,7 +83,16 @@ public class BST {
 
         return isBSTHelper(T, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
-    public static boolean isBSTHelper(Node T, int min, int max)
+    public static boolean isBSTHelper(Node T, int min, int max){// version 2
+        if(T==null){
+            return true;
+        }
+        else if(T.val<min || T.val>max){
+            return false;
+        }
+        return isBSTHelper(T.left, min, T.val) && isBSTHelper(T.right, T.val,max);
+    }
+    public static boolean isBSTHelper2(Node T, int min, int max)
     {
         if(T==null){//empty node
             return true;
